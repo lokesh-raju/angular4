@@ -1,0 +1,43 @@
+<div class="form-container" id="toolbar">
+    <header [@fallIn]="state">
+      <button (click)="logout()" class="basic-btn">Logout</button>
+    </header>
+    <div id="page" [@moveInLeft]="state">
+      <h2>Hey {{ name }}!</h2>
+      
+      
+      <form #form="ngForm" (submit)="logForm(form)" [hidden]="form.submitted">
+      
+      <div class="form-group" >
+        <div>Vote for Best Prepared Speaker</div>
+        <ul>
+          <li *ngFor="let item of items | async">
+            <label><input type="radio" name="voteforpreparedspeech" [value]="item" ngModel required #voteforpreparedspeech="ngModel">{{item.key}}</label>
+          </li>
+        </ul>
+      </div>
+      <div [@moveInLeft]="state" *ngIf="!form.controls.voteforpreparedspeech?.hasError('required')" class="form-group" >
+        <div>Vote for Best Table Topic Speaker</div>
+        <ul>
+          <li *ngFor=" let item2 of tabletopic | async">
+            <label><input type="radio" name="votefortabletopic" [value]="item2" ngModel required #votefortabletopic="ngModel">{{item2.key}}</label>
+          </li>
+        </ul>
+      </div>
+
+      <div [@moveInLeft]="state" *ngIf="(!form.controls.voteforpreparedspeech?.hasError('required')) && (!form.controls.votefortabletopic?.hasError('required'))" class="form-group" >
+        <div>Vote for Best Evaluator</div>
+        <ul>
+          <li *ngFor=" let item3 of bestevaluator | async">
+            <label><input type="radio" name="voteforbestevaluator" [value]="item3" ngModel required #voteforbestevaluator="ngModel">{{item3.key}}</label>
+          </li>
+        </ul>
+      </div>
+      <!-- <button [disabled]="form.controls.votefortabletopic?.hasError('required')">Next</button> -->
+      <button type="submit" [disabled]="form.controls.voteforpreparedspeech?.hasError('required')" class="btn btn-primary">Submit</button>
+      </form>
+      <div class="message" [hidden]="!form.submitted">
+        Message here
+      </div>
+    </div>
+</div>
