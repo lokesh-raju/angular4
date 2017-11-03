@@ -20,6 +20,15 @@ import {PostsService} from './posts.service';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultsComponent } from './results/results.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,MatCheckboxModule
+} from '@angular/material';
+
 
 
 @NgModule({
@@ -37,8 +46,8 @@ import { ResultsComponent } from './results/results.component';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    BrowserAnimationsModule,
-    routes,FormsModule,HttpModule,ChartsModule
+    BrowserAnimationsModule,NoopAnimationsModule,MatCardModule,
+   MatButtonModule, MatCheckboxModule, routes,FormsModule,HttpModule,ChartsModule
   ],
   providers: [AuthGuardService,VotingdoneService,PostsService],
   bootstrap: [AppComponent]
